@@ -76,8 +76,8 @@ try:
 
     # print(df_na[:10])
 
-    # cur.execute(sql_create)
-    # psycopg2.extras.execute_values(cur, sql_insert, df_na.values)
+    cur.execute(sql_create)
+    psycopg2.extras.execute_values(cur, sql_insert, df_na.values)
 
     # conn.commit()
     conn.close()
