@@ -73,7 +73,13 @@ try:
 
     #     ALTER TABLE dwh_layer.stars_fact ADD PRIMARY KEY (user_id,review_id);"""
 
-    sql_create_fact_stars_1_by_1 = """DROP TABLE IF EXISTS dwh_layer.stars_fact;
+    # sql_drop_fkey = """ALTER TABLE dwh_layer.stars_fact DROP CONSTRAINT IF EXISTS fk_stars_user;
+    # ALTER TABLE dwh_layer.stars_fact DROP CONSTRAINT IF EXISTS fk_stars_business;
+    # ALTER TABLE dwh_layer.stars_fact DROP CONSTRAINT IF EXISTS fk_stars_review;
+    # ALTER TABLE dwh_layer.stars_fact DROP CONSTRAINT IF EXISTS fk_stars_climate;"""
+
+    sql_create_fact_stars_1_by_1 = """
+    DROP TABLE IF EXISTS dwh_layer.stars_fact;
         CREATE TABLE dwh_layer.stars_fact(
             user_id TEXT,
             business_id TEXT,
@@ -102,28 +108,27 @@ try:
     ALTER TABLE dwh_layer.stars_fact ADD CONSTRAINT fk_stars_climate FOREIGN KEY (date) REFERENCES dwh_layer.climate_dimension (date);"""
 
 
-    q1 = pd.read_sql_query('SELECT user_id FROM dwh_layer.user_dimension', con=conn_engine)
-    q2 = pd.read_sql_query('SELECT business_id FROM dwh_layer.business_dimension', con=conn_engine)
-    q3 = pd.read_sql_query('SELECT review_id FROM dwh_layer.review_dimension', con=conn_engine)
-    q4 = pd.read_sql_query("SELECT date FROM dwh_layer.climate_dimension WHERE date >= '2005-02-16'", con=conn_engine)
-    q5 = pd.read_sql_query('SELECT stars FROM dwh_layer.review_dimension', con=conn_engine)
+    # q1 = pd.read_sql_query('SELECT user_id FROM dwh_layer.user_dimension', con=conn_engine)
+    # q2 = pd.read_sql_query('SELECT business_id FROM dwh_layer.business_dimension', con=conn_engine)
+    # q3 = pd.read_sql_query('SELECT review_id FROM dwh_layer.review_dimension', con=conn_engine)
+    # q4 = pd.read_sql_query("SELECT date FROM dwh_layer.climate_dimension WHERE date >= '2005-02-16'", con=conn_engine)
+    # q5 = pd.read_sql_query('SELECT stars FROM dwh_layer.review_dimension', con=conn_engine)
 
-    df1 = pd.DataFrame(q1)
-    df2 = pd.DataFrame(q2)
-    df3 = pd.DataFrame(q3)
-    df4 = pd.DataFrame(q4)
-    df5 = pd.DataFrame(q5)
+    # df1 = pd.DataFrame(q1)
+    # df2 = pd.DataFrame(q2)
+    # df3 = pd.DataFrame(q3)
+    # df4 = pd.DataFrame(q4)
+    # df5 = pd.DataFrame(q5)
 
-    df = pd.concat([df1,df2,df3,df4,df5], axis=1)
-    df_na = df.where(df.notna(), None)
+    # df = pd.concat([df1,df2,df3,df4,df5], axis=1)
+    # df_na = df.where(df.notna(), None)
 
     # cur.execute(sql_create_dim_user)
     # cur.execute(sql_create_dim_business)
     # cur.execute(sql_create_dim_review)
     # cur.execute(sql_create_dim_climate)
-    # cur.execute(sql_create_fact_stars)
 
-    # cur.execute(sql_create_fact_stars_1_by_1)
+    # # cur.execute(sql_create_fact_stars_1_by_1)
     # psycopg2.extras.execute_values(cur, sql_insert, df_na.values)
 
     cur.execute(sql_add_fkey)
