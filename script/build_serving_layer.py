@@ -72,12 +72,14 @@ try:
     df = pd.concat([df1,df2,df3,df4,df5,df6,df7,df8], axis=1)
     df_na = df.where(df.notna(), None)
 
+    df_na.to_csv('serving_layer.csv', index=False, encoding='utf-8')
+
     # print(df_na[:10])
 
-    cur.execute(sql_create)
-    psycopg2.extras.execute_values(cur, sql_insert, df_na.values)
+    # cur.execute(sql_create)
+    # psycopg2.extras.execute_values(cur, sql_insert, df_na.values)
 
-    conn.commit()
+    # conn.commit()
     conn.close()
     conn_engine.close()
     cur.close()

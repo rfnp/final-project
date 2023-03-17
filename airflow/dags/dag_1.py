@@ -9,11 +9,8 @@ import psycopg2
 import pandas as pd
 import sqlalchemy
 
-import sys
-sys.path.insert(0,os.path.abspath(os.path.dirname(__file__)))
-
 default_args = {
-    'owner': 'rfnp',
+    'owner': 'airflow',
     'depends_on_past': False,
     'start_date': days_ago(2),
     'retries': 1,
