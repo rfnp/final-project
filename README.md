@@ -1,5 +1,5 @@
 # final-project
-Final project of Data Engineer Bootcamp at DigitalSkola.
+Final project of Data Engineer Bootcamp at DigitalSkola. Here is the final product, a csv file containing the serving layer. https://drive.google.com/file/d/1XvfrI3FxozjAMeneIyOkhmyal-WnH9en/view?usp=sharing
 
 # Project architecture
 <a href="https://drive.google.com/uc?export=view&id=1SksKZauJabZPZcwjICPjNXBSDFulpwry"><img src="https://drive.google.com/uc?export=view&id=1SksKZauJabZPZcwjICPjNXBSDFulpwry" style="width: 650px; max-width: 100%; height: auto" title="Project architecture" />
